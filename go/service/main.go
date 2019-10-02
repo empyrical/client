@@ -386,7 +386,6 @@ func (d *Service) RunBackgroundOperations(uir *UIRouter) {
 	// backgrounded.
 	d.G().Log.Debug("RunBackgroundOperations: starting")
 	ctx := context.Background()
-	setupRandomPwPrefetcher(d.G())
 	d.tryLogin(ctx, loginAttemptOnline)
 	d.chatOutboxPurgeCheck()
 	d.hourlyChecks()
@@ -1507,11 +1506,4 @@ func (d *Service) StartStandaloneChat(g *libkb.GlobalContext) error {
 	d.startChatModules()
 
 	return nil
-}
-
-func setupRandomPwPrefetcher(g *libkb.GlobalContext) {
-	prefetcher := &libkb.HasRandomPWPrefetcher{}
-	g.SetHasRandomPWPrefetcher(prefetcher)
-	g.AddLoginHook(prefetcher)
-	g.AddLogoutHook(prefetcher, "HasRandomPWPrefetcher")
 }
