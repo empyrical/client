@@ -3,6 +3,7 @@ import buildCommands from './build'
 import electronComands from './electron'
 import fontCommands from './font'
 import prettierCommands from './prettier'
+import whatsNewCommands from './whats-new'
 import {execSync} from 'child_process'
 import path from 'path'
 import fs from 'fs'
@@ -15,6 +16,7 @@ const commands = {
   ...fontCommands,
   ...electronComands,
   ...prettierCommands,
+  ...whatsNewCommands,
   help: {
     code: () => {
       console.log(
